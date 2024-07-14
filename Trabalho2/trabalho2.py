@@ -12,7 +12,7 @@ def inicializa(continuar):
             
     return quant_10, quant_20, quant_50, quant_100, continuar
 
-def imprimir_saldo(saldo):
+def saldo(saldo):
     print("Saldo atual: R$ {}".format(saldo))
 
 def saque(saldo, quant_10, quant_20, quant_50, quant_100):
@@ -64,7 +64,7 @@ def saque(saldo, quant_10, quant_20, quant_50, quant_100):
     print("A quantidade sacada é: R$ {} com:\n{} cédulas de 100\n{} cédulas de 50\n{} cédulas de 20\n{} cédulas de 10\nSeu saldo restante é: R$ {}".format(saque, celulas_100, celulas_50, celulas_20, celulas_10, saldo))
     return saldo, quant_10, quant_20, quant_50, quant_100
 
-def deposito(saldo):
+def depósito(saldo):
     deposito = int(input("digite o valor do deposito: "))
     while deposito <= 0:
         deposito = int(input("o deposito não pode ser não positivo: "))
@@ -92,14 +92,14 @@ while True:
     if escolha == "1":
         nota_10, nota_20, nota_50, nota_100, cont = inicializa(cont)
     elif escolha == "2":
-        imprimir_saldo(saldo_total)
+        saldo(saldo_total)
     elif escolha == "3":
         if cont == 0:
             print("primeiro inicialize o caixa")
         else:
             saldo_total, nota_10, nota_20, nota_50, nota_100 = saque(saldo_total, nota_10, nota_20, nota_50, nota_100)
     elif escolha == "4":
-        saldo_total = deposito(saldo_total)
+        saldo_total = depósito(saldo_total)
     elif escolha == "5":
         sair()
     else:
