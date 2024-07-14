@@ -18,7 +18,7 @@ def saldo(saldo):
 def saque(saldo, quant_10, quant_20, quant_50, quant_100):
     
     saque = int(input("digite o valor que quer sacar: "))
-
+    saque_total = saque
     if saque > saldo or saque < 0:
         print("não se pode sacar esse valor")
         return saldo,quant_10, quant_20, quant_50, quant_100 
@@ -61,7 +61,7 @@ def saque(saldo, quant_10, quant_20, quant_50, quant_100):
             print("Valor não pode ser sacado com as notas disponíveis.")
             return saldo + ((celulas_100 * 100) + (celulas_50 * 50) + (celulas_20 * 20) + (celulas_10 * 10) + saque), quant_10 + celulas_10, quant_20 + celulas_20, quant_50 + celulas_50, quant_100 + celulas_100
     
-    print("A quantidade sacada é: R$ {} com:\n{} cédulas de 100\n{} cédulas de 50\n{} cédulas de 20\n{} cédulas de 10\nSeu saldo restante é: R$ {}".format(saque, celulas_100, celulas_50, celulas_20, celulas_10, saldo))
+    print("A quantidade sacada é: R$ {} com:\n{} cédulas de 100\n{} cédulas de 50\n{} cédulas de 20\n{} cédulas de 10\nSeu saldo restante é: R$ {}".format(saque_total, celulas_100, celulas_50, celulas_20, celulas_10, saldo))
     return saldo, quant_10, quant_20, quant_50, quant_100
 
 def depósito(saldo):
