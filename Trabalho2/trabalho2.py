@@ -78,7 +78,7 @@ def depósito(saldo):
     #Verifica se o valor do depósito é maior que 0
     while deposito <= 0:
         deposito = int(input("o deposito não pode ser não positivo: "))
-    #Adiciona o valor do deposifo ao saldo
+    #Adiciona o valor do depósito ao saldo
     saldo = saldo + deposito
     print("Deposito realizado com sucesso\nO valor do saldo atual após o deposito: R${} é: R${}".format(deposito, saldo))
     return saldo
