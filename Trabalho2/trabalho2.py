@@ -1,7 +1,7 @@
-#Trabalho (prova2)     Prof. Luciano Silva     7/jul/2024
+#Trabalho (prova2)     Prof. Luciano Silva     7/jul/2024 #Letícia Bilinovski Pianaro dos Santos
 
 #função que inicializa o caixa
-def inicializa(continuar):
+def inicializa(cont):
     #Adquire a quantidade de cada nota no caixa
     quant_10 = int(input("Digite a quantidade de notas de R$10: "))     
     quant_20 = int(input("Digite a quantidade de notas de R$20: "))
@@ -9,14 +9,16 @@ def inicializa(continuar):
     quant_100 = int(input("Digite a quantidade de notas de R$100: "))
     #Verifica se não ha nenhum valor negativo
     if quant_10 >= 0 and quant_20 >= 0 and quant_50 >= 0 and quant_100 >= 0:
-        continuar = 1
+        cont = 1 # chave para iniciar uma vez o caixa
     else:
         print("A quantidade não pode ser negativa")
             
-    return quant_10, quant_20, quant_50, quant_100, continuar
+    return quant_10, quant_20, quant_50, quant_100, cont
+
 #Função que mostra o saldo do cliente
 def saldo(saldo):
     print("Saldo atual: R$ {}".format(saldo))
+
 #Função saque
 def saque(saldo, quant_10, quant_20, quant_50, quant_100):
     #Adquire o saque desejado
@@ -25,12 +27,13 @@ def saque(saldo, quant_10, quant_20, quant_50, quant_100):
     saque_total = saque
     #Verifica se é possivel sacar o valor solicitado
     if saque > saldo or saque < 0:
-        print("não se pode sacar esse valor")
+        print("não se pode sacar esse valor, verifique o saldo e tente novamente.")
         return saldo,quant_10, quant_20, quant_50, quant_100 
     #Verifica se tem dinheiro suficiente no caixa
-    if saque > (quant_10 * 10) + (quant_20 * 20) + (quant_50 * 50) + (quant_100 * 100):
-        print("não tem dinheiro suficiente no caixa")
-        return saldo,quant_10, quant_20, quant_50, quant_100   
+  
+   # if saque > (quant_10 * 10) + (quant_20 * 20) + (quant_50 * 50) + (quant_100 * 100):  
+    #    print("não tem dinheiro suficiente no caixa")
+     #   return saldo,quant_10, quant_20, quant_50, quant_100   
     #Verifica se pode ser sacado com as notas disponiveis exemplo: não permite sacar 576 reais ou 8 reais ja que a menor nota possivel é 10 reais
     if saque % 10 != 0:
         print("Valor não pode ser sacado com as notas disponíveis.")
@@ -68,10 +71,11 @@ def saque(saldo, quant_10, quant_20, quant_50, quant_100):
     if saque > 0: #Se mesmo após as operaçoes acima o saque for superior a zero , por exemplo: 1 nota de 100, 0 do resto das notas e valor de saque de 50 reais 
             print("Valor não pode ser sacado com as notas disponíveis.")
             saldo = saldo + saque_total
-            return saldo, quant_10 + celulas_10, quant_20 + celulas_20, quant_50 + celulas_50, quant_100 + celulas_100 # puxa a variavel reserva 
-            #Se tudo ocorrer bem informa qual valor sacado com quantas notas e o novo saldo
+            return saldo, quant_10 + celulas_10, quant_20 + celulas_20, quant_50 + celulas_50, quant_100 + celulas_100 
+            #Se tudo ocorrer bem informa qual valor sacado com quantas notas e o novo 
     print("A quantidade sacada é: {} com:\n{} cédulas de 100\n{} cédulas de 50\n{} cédulas de 20\n{} cédulas de 10\nSeu saldo restante é: R$ {}".format(saque_total, celulas_100, celulas_50, celulas_20, celulas_10, saldo))
     return saldo, quant_10, quant_20, quant_50, quant_100
+
 #Função depósito
 def depósito(saldo):
     deposito = int(input("digite o valor do deposito: "))
@@ -82,22 +86,24 @@ def depósito(saldo):
     saldo = saldo + deposito
     print("Deposito realizado com sucesso\nO valor do saldo atual após o deposito: R${} é: R${}".format(deposito, saldo))
     return saldo
+
 #Função sair 
 def sair():
     #Tratas as exeções transfomando a resposta em maiusula
     resp = input("Tem certeza que quer encerrar o atendimento? (SIM/NÃO): ").upper()
     #Se a respota for positiva encerra o programa
     if resp == "SIM" or resp == "S":
+        print("saida feita com sucesso!")
         exit()
     #Se a resposta for negativa retorna ao programa original    
     elif resp == "NÃO" or resp == "NAO" or resp == "N":
         return
     else:
         print("resposta invalida tente de novo")
-
-saldo_total = 1000 #Inicializa o programa com saldo de 1000 reais conforme solicitado jno trabalho
-nota_10 = nota_20 = nota_50 = nota_100 = 0
+#Programa principal
+saldo_total = 1000 #Inicializa o programa com saldo de 1000 reais conforme solicitado no trabalho
 cont = 0  # Condição que verifica se o inicializa ja foi feito , colocando como padrão não ou 0 
+
 #Looping continuo 
 while True:
     #Menu de escolha
